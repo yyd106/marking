@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="ex-UA-Compatible" content="ie-edge">
+  <title>Document</title>
+  <script src="./node_modules/web3/dist/web3.min.js"></script>
+</head>
+<body>
+  <input id="input" type="text">
+  <button id="button">Set</button>
+  <pre id="output">
+  </pre>>
+  <script>
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8811"));
+    web3.eth.defaultAccount = web3.eth.accounts[0];
+    var mmContract =  web3.eth.contract([{"constant":true,"inputs":[],"name":"getDelegateArrayLength","outputs":[{"name":"length","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"delegateContracts","outputs":[{"name":"seeker","type":"address"},{"name":"delegate","type":"address"},{"name":"advance","type":"uint256"},{"name":"commission","type":"uint256"},{"name":"status","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"delegate","type":"address"}],"name":"initialDelegate","outputs":[{"name":"contractStatus","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"sender","type":"address"},{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"send","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"seeker","type":"address"},{"name":"gender","type":"string"},{"name":"commission","type":"uint256"},{"name":"advance","type":"uint256"}],"name":"initialSeeker","outputs":[{"name":"contractStatus","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"delegateMale","type":"address"},{"name":"delegateFemale","type":"address"},{"name":"seekerMale","type":"address"},{"name":"seekerFemale","type":"address"}],"name":"completeMatch","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"seeker","type":"address"},{"name":"delegate","type":"address"}],"name":"confirmSeekerDelegate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"matchContracts","outputs":[{"name":"seekerMale","type":"address"},{"name":"seekerFemale","type":"address"},{"name":"delegateMale","type":"address"},{"name":"delegateFemale","type":"address"},{"name":"amountMale","type":"uint256"},{"name":"amountFemale","type":"uint256"},{"name":"matchTime","type":"uint256"},{"name":"completeTime","type":"uint256"},{"name":"status","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"delegateMale","type":"address"},{"name":"delegateFemale","type":"address"},{"name":"seekerMale","type":"address"},{"name":"seekerFemale","type":"address"}],"name":"matchContract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"delegateMale","type":"address"},{"name":"delegateFemale","type":"address"},{"name":"seekerMale","type":"address"},{"name":"seekerFemale","type":"address"}],"name":"cancelMatchContract","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
+    var mm = mmContract.at('0x6875483cd851990ddfcd5fd49f6732d71cbedb46');
+    var input = document.getElementById('input');
+    var button = document.getElementById('button');
+    var output = document.getElementById('output');
+    button.addEventListener('click',fuction(){
+
+        output.innerHTML = web3
+    });
+
+
+
+  </script>
+</body>
+</html>
