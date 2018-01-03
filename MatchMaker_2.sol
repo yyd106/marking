@@ -1,6 +1,4 @@
 pragma solidity ^0.4.18;
-import './DelegateContract.sol';
-import './MatchContract.sol';
 
 contract MatchMaker{
     address minter;
@@ -61,7 +59,7 @@ contract MatchMaker{
         else {
             delegates[delegate].myAddress = delegate;
             delegates[delegate].status = "Active";
-            return "Delegate Initialed!";
+            return "Delegate Initianled!";
         }
     }
 
@@ -214,11 +212,91 @@ contract MatchMaker{
         length = newDelegateContracts.length;
         return length;
     }
+}
 
-    function viewDelegate(uint location)public constant returns(uint commission){
-        address delegateContractAddr = newDelegateContracts[location];
-        DelegateContract delec = DelegateContract(delegateContractAddr);
-        uint delecommission = delec.getCommission();
-        return delecommission;
-    }
+contract DelegateContract{
+  address seeker;
+  address delegate;
+  uint advance;
+  uint commission;
+  string status; //  "Created" "Canceled" "Completed"
+
+  function DelegateContract(address Seeker, address Delegate, uint Advance, uint Commission)public{
+    seeker = Seeker;
+    delegate = Delegate;
+    advance = Advance;
+    commission = Commission;
+    status = "Created";
+
+  }
+
+  function cancelContract()public{
+    status = "Canceled";
+  }
+
+  function getSeeker() public constant returns(address Seeker) {
+    return seeker;
+  }
+  function getDelegate() public constant returns(address Delegate) {
+    return delegate;
+  }
+  function getAdvance() public constant returns(uint Advance) {
+    return advance;
+  }
+  function getCommission() public constant returns(uint Commission) {
+    return commission;
+  }
+
+}
+
+contract MatchContract{
+  address seekerMale;
+  address seekerFemale;
+  address delegateMale;
+  address delegateFemale;
+  uint commissionMale;
+  uint commissionFemale;
+  uint matchTime;
+  uint completeTime;
+  string status; //  "Created" "Canceled" "Completed"
+  uint BigNumber;
+
+  function MatchContract(address SeekerMale, address SeekerFemale, address DelegateMale, address DelegateFemale, uint CommissionMale, uint CommissionFemale)public{
+    BigNumber = 999999999;
+    seekerMale = SeekerMale;
+    seekerFemale = SeekerFemale;
+    delegateMale = DelegateMale;
+    delegateFemale = DelegateFemale;
+    commissionMale = CommissionMale;
+    commissionFemale = CommissionFemale;
+    matchTime = block.timestamp;
+    completeTime = BigNumber;
+    status = "Created";
+  }
+
+  function completeContract() public {
+    completeTime = block.timestamp;
+    status = "Completed";
+  }
+
+  function cancelContract()public{
+    status = "Canceled";
+  }
+
+  function getSeekerMale() public constant returns(address SeekerMale) {
+    SeekerMale = seekerMale;
+  }
+  function getSeekerFemale() public constant returns(address SeekerFemale) {
+    SeekerFemale = seekerFemale;
+  }
+  function getDelegates() public constant returns(address DelegateMale, address DelegateFemale) {
+    DelegateMale = delegateMale;
+    DelegateFemale = delegateFemale;
+  }
+
+  function getCommission() public constant returns(uint CommissionMale, uint CommissionFemale) {
+    CommissionMale = commissionMale;
+    CommissionFemale = commissionFemale;
+  }
+
 }
